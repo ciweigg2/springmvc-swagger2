@@ -8,6 +8,7 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -20,8 +21,9 @@ import java.util.List;
  * @Version:
  */
 
-@Api(tags = "企业基本信息" ,description = "企业征信基本信息-基础段")
+@Api(tags = "测试模块" ,description = "企业征信基本信息-基础段")
 @RestController
+@RequestMapping("/demo")
 public class DemoController {
 
     @ApiOperation(value = "测试swagger")
