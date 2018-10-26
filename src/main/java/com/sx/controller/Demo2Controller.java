@@ -35,6 +35,6 @@ public class Demo2Controller {
     public BaseResponse<UserForm> query2(@RequestBody UserForm userForm){
         List<UserForm> userFormList = new ArrayList<UserForm>();
         userFormList.add(userForm);
-        return BaseResponse.generateBadResponseEntity("ok" ,userForm);
+        return BaseResponse.success(userForm);
     }
 }
