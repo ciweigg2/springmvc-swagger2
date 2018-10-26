@@ -30,9 +30,9 @@ public class DemoController {
     @ApiImplicitParams({
             @ApiImplicitParam(name = "idList" ,allowMultiple = true, paramType = "query", dataType = "string")//请求参数中带有list集合
     })
-    public BaseResponse<UserForm> query(@RequestBody UserForm userForm){
+    public BaseResponse<List<UserForm>> query(@RequestBody UserForm userForm){
         List<UserForm> userFormList = new ArrayList<UserForm>();
         userFormList.add(userForm);
-        return BaseResponse.generateBadResponseEntity("ok" ,userForm);
+        return BaseResponse.success(userFormList);
     }
 }
