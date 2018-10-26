@@ -1,4 +1,4 @@
-package com.sx.swagger;
+package com.sx.controller;
 
 import com.sx.dto.BaseResponse;
 import com.sx.model.UserForm;
@@ -21,20 +21,20 @@ import java.util.List;
  * @Version:
  */
 
-@Api(tags = "测试模块" ,description = "企业征信基本信息-基础段")
+@Api(tags = "测试模块2" ,description = "企业征信基本信息-基础段")
 @RestController
-@RequestMapping("/demo")
-public class DemoController {
+@RequestMapping("/demo2")
+public class Demo2Controller {
 
-    @ApiOperation(value = "测试swagger")
+    @ApiOperation(value = "测试swagger2")
 //    @ApiResponse(code = 200 ,responseContainer ="List" ,response=UserForm.class, message = "返回对象")
-    @PostMapping(value = "/query")
+    @PostMapping(value = "/query2")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "idList" ,allowMultiple = true, paramType = "query", dataType = "string")//请求参数中带有list集合
     })
-    public BaseResponse<List<UserForm>> query(@RequestBody UserForm userForm){
+    public BaseResponse<UserForm> query2(@RequestBody UserForm userForm){
         List<UserForm> userFormList = new ArrayList<UserForm>();
         userFormList.add(userForm);
-        return BaseResponse.success(userFormList);
+        return BaseResponse.generateBadResponseEntity("ok" ,userForm);
     }
 }

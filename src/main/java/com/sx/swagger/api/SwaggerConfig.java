@@ -32,15 +32,42 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
     @Autowired
     private TypeResolver typeResolver;
 
+    //展示所有的api
     @Bean
     public Docket createUserInfo() {
         Docket docket = new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.sx.swagger"))
-                .paths(PathSelectors.any()).build().alternateTypeRules( //自定义规则
+                .apis(RequestHandlerSelectors.basePackage("com.sx"))
+                .paths(PathSelectors.any()).build().alternateTypeRules( //自定义规则 将泛型转换成JSON
                         newRule(typeResolver.resolve(BaseResponse.class),
                                 typeResolver.resolve(WildcardType.class)));
         return docket;
+    }
+
+    //模块分组
+    @Bean
+    public Docket userApis() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .groupName("公共模块")
+                .select()
+                .apis(RequestHandlerSelectors.basePackage("com.sx.controller"))//根据包名来区分
+                .paths(PathSelectors.any())
+//                .apis(RequestHandlerSelectors.withClassAnnotation(Api.class))//根据接口地址来区分
+//                .paths(PathSelectors.regex("/normal.*"))
+                .build();
+    }
+
+    //模块分组
+    @Bean
+    public Docket customApis() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .groupName("测试模块")
+                .select()
+                .apis(RequestHandlerSelectors.basePackage("com.sx.swagger"))
+                .paths(PathSelectors.any())
+//                .apis(RequestHandlerSelectors.withClassAnnotation(Api.class))//根据接口地址来区分
+//                .paths(PathSelectors.regex("/demo.*"))
+                .build();
     }
 
     @Override
